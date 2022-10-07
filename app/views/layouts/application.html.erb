@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Railsvue</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <%= vite_client_tag %>
+    <%= vite_javascript_tag 'application' %>
+    <!--
+      If using a TypeScript entrypoint file:
+        vite_typescript_tag 'application'
+
+      If using a .jsx or .tsx entrypoint, add the extension:
+        vite_javascript_tag 'application.jsx'
+
+      Visit the guide for more information: https://vite-ruby.netlify.app/guide/rails
+    -->
+
+  </head>
+
+  <body>
+<p class="navbar-text float-right">
+<% if staff_signed_in? %>
+  Logged in as <strong><%= current_staff.email %></strong>.
+  <%= link_to 'Edit profile', edit_staff_registration_path, :class => 'navbar-link' %> |
+  <%= link_to "Logout", destroy_staff_session_path, :class => 'navbar-link', data: { turbo_method: :delete }  %>
+<% elsif client_signed_in? %>
+  Logged in as <strong><%= current_client.email %></strong>.
+  <%= link_to 'Edit profile', edit_client_registration_path, :class => 'navbar-link' %> |
+  <%= link_to "Logout", destroy_client_session_path, :class => 'navbar-link', data: { turbo_method: :delete }  %>
+<% else %>
+  <%= link_to "Sign up Staff", new_staff_registration_path, :class => 'navbar-link'  %> |
+  <%= link_to "Sign up Client", new_client_registration_path, :class => 'navbar-link'  %> |
+  <%= link_to "Login Staff", new_staff_session_path, :class => 'navbar-link'  %>
+  <%= link_to "Login Client", new_client_session_path, :class => 'navbar-link'  %>
+<% end %>
+</p>
+<div>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+</div>
+    <%= yield %>
+  </body>
+</html>

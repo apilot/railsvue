@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "@hotwired/turbo-rails": "^7.2.0",
+    "@vitejs/plugin-vue": "^3.1.2",
+    "vue": "^3.2.40"
+  },
+  "devDependencies": {
+    "vite": "^3.0.0",
+    "vite-plugin-ruby": "^3.1.0"
+  }
+}
